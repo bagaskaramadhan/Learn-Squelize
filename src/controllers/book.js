@@ -1,10 +1,11 @@
 const model = require('../models/book')
+const { Success, Failed } = require('../helpers/response')
 
 const controller = {
     getAll: (req, res) => {
         model.findAll()
             .then((result) => {
-                res.json(result)
+                Success(res, result, 'Success Get All Data')
             })
             .catch(err => {
                 console.log(err)
@@ -14,7 +15,7 @@ const controller = {
         const id = req.params.id
         model.findByPk(id)
             .then((result) => {
-                res.json(result)
+                Success(res, result, 'Success Get Data By Id')
             })
             .catch(err => {
                 console.log(err)
@@ -24,7 +25,7 @@ const controller = {
         const data = req.body
         model.create(data)
             .then((result) => {
-                res.json(result)
+                Success(res, result, 'Success Insert Data')
             })
             .catch(err => {
                 console.log(err)
@@ -36,7 +37,7 @@ const controller = {
             where: { id }
         })
             .then((result) => {
-                res.json(result)
+                Success(res, result, 'Success Delete Data')
             })
             .catch(err => {
                 console.log(err)
