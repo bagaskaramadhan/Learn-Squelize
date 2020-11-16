@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/book')
+const { getAll, getOne, insert } = require('../controllers/book')
 router
-    .get('/book', controller.getAll)
+    .get('/book', getAll)
+    .get('/detail/:id', getOne)
+    .post('/insert', insert)
 
 module.exports = router
