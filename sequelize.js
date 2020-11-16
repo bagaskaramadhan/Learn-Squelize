@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const PORT = 3001
+const path = require('path')
+const { PORT } = require('./src/helpers/env')
 
 app.use('/', (req, res) => {
     res.send('HELL-O')
