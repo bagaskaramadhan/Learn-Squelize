@@ -22,14 +22,23 @@ const controller = {
             })
     },
     insert: (req, res) => {
-        const data = req.body
-        model.create(data)
-            .then((result) => {
-                Success(res, result, 'Success Insert Data')
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        const data = {
+            title: req.body.title,
+            author: req.body.author,
+            price: req.body.price,
+            stock: req.body.stock
+        }
+        if (!data) {
+            console.log('Error')
+        } else {
+            model.create(data)
+                .then((result) => {
+                    Success(res, result, 'Success Insert Data')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     },
     deleted: (req, res) => {
         const id = req.params.id
@@ -38,6 +47,22 @@ const controller = {
         })
             .then((result) => {
                 Success(res, result, 'Success Delete Data')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    },
+    updated: (req, res) => {
+        const id = req.params.id
+        const data = {
+            title: req.body.title,
+            author: req.body.author,
+            price: req.body.price,
+            stock: req.body.stock
+        }
+        model.update(data, { where: { id } })
+            .then(() => {
+                Success(res, data, 'Success Update Data')
             })
             .catch(err => {
                 console.log(err)
