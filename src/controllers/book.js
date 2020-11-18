@@ -1,5 +1,5 @@
 const model = require('../models/book')
-const { Success, Failed } = require('../helpers/response')
+const { Success } = require('../helpers/response')
 
 const controller = {
     getAll: (req, res) => {
